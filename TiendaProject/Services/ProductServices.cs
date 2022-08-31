@@ -14,6 +14,11 @@ public class ProductServices
 
     public Product Create(string title, string description, decimal price)
     {
+        if (price <= 0)
+        {
+            throw new InvalidOperationException("Invalid Price");
+        }
+
         var productsCreate = new Product()
         {
             Title = title, Description = description, Id = Guid.NewGuid(), Price = price
