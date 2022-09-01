@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using TiendaProject.Models;
 using TiendaProject.Services;
@@ -36,11 +37,15 @@ public class ProductsController : ControllerBase
         return _productServices.GetProduct(id);
     }
 
-    [HttpDelete(Name = "Delete Product")]
-
+    [HttpDelete(Name = "DeleteProduct")]
     public void Delete(Guid id)
     {
         _productServices.Delete(id);
+    }
+    [HttpGet("search/{searchProduct}")]
+    public IEnumerable<Product> SearchProduct(string searchProduct)
+    {
+        return _productServices.SearchProduct(searchProduct);
     }
     
     

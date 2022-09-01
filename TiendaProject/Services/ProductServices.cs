@@ -39,6 +39,14 @@ public class ProductServices
     {
         _productsList.RemoveAt(_productsList.FindIndex(i => i.Id == id));
     }
+
+    public IEnumerable<Product> SearchProduct(string searchProduct)
+    {
+        var searchProductLower = searchProduct.ToLowerInvariant(); 
+        var product = _productsList.FindAll(i => i.Title.ToLowerInvariant().Contains(searchProductLower)
+                                                  || i.Description.ToLowerInvariant().Contains(searchProductLower));
+        return product;
+    }
     
 }
 
